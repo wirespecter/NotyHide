@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/back"
+    android:orientation="vertical" >
+
 	<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
-		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Title" />
-		<EditText android:id="@+id/title" android:layout_width="wrap_content"	android:layout_height="wrap_content" android:layout_weight="1" />
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Title" android:textColor="#FFFFFF"/>
+		<EditText android:id="@+id/title" android:layout_width="wrap_content"	android:layout_height="wrap_content" android:layout_weight="1" android:textColor="#000000"/>
 	</LinearLayout>
 	<TextView android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="Body Text" />
+		android:layout_height="wrap_content" android:text="Body Text" android:textColor="#FFFFFF" />
 	<EditText android:id="@+id/insertdata" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:layout_weight="1"
-		android:scrollbars="vertical" />
+		android:scrollbars="vertical" android:textColor="#000000" />
 	<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
 		<Button android:id="@+id/save" android:text="Save" android:layout_width="wrap_content" android:layout_height="wrap_content" />
 		<Button android:text="Cut" android:id="@+id/cut" android:layout_width="wrap_content" android:layout_height="wrap_content" />

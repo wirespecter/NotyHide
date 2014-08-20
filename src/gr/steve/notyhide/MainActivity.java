@@ -1,7 +1,10 @@
 package gr.steve.notyhide;
 
 import android.app.ListActivity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -12,8 +15,11 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.Toast;
 
 public class MainActivity extends ListActivity {
+	
+	 private static final ComponentName LAUNCHER_COMPONENT_NAME = new ComponentName("gr.steve.notyhide", "gr.steve.notyhide.Launcher");
 
 	   private static final int ACTIVITY_CREATE=0;
 	   private static final int ACTIVITY_EDIT=1;
@@ -33,6 +39,24 @@ public class MainActivity extends ListActivity {
 	        mDbHelper.open();
 	        fillData();
 	        registerForContextMenu(getListView());
+	        
+	        final String PREFS_NAME = "MyPrefsFile";
+
+			SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+			if (settings.getBoolean("my_first_time", true)) {
+				
+				Toast.makeText(getBaseContext(), "To launch the app again, dial phone number 12345.", Toast.LENGTH_LONG).show();
+				
+			//PackageManager p = getPackageManager();
+			//p.setComponentEnabledSetting(ComponentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+			
+			getPackageManager().setComponentEnabledSetting(LAUNCHER_COMPONENT_NAME,
+	        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+											
+			    settings.edit().putBoolean("my_first_time", false).commit(); 
+			}
+			
 	   }
 	   public void onBackPressed() {
 		moveTaskToBack(true);
